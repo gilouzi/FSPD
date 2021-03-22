@@ -15,7 +15,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
         return services_pb2.HelloReply(retval='Hello again, %s!' % str(request.pid))
 
     def get_service_port(self, request, context):
-        print(1)
+        print(request.name)
         print("GRPC server in say_hello_again, pid =", request.name)
         return services_pb2.ServicePort(port='Hello again, %s!' % str(1))
         # service_port = services_dict[request.name]['port'] if request.name in services_dict.keys() else -1
