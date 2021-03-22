@@ -11,3 +11,5 @@ cmd, port = line[0].split()
 comment = line[1]
 
 print(cmd, '-', port, '-', comment)
+
+python3 -m grpc_tools.protoc -I. --python_out=. --grc_python_out=. hello.proto 
