@@ -24,7 +24,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
     
     def get_service_description(self, request, context):
         service_description = services_dict[request.name]['description'] if request.name in services_dict.keys() else ""
-         print("client adress =", str(context.peer()), 
+        print("client adress =", str(context.peer()), 
                 "command called = get_service_description ",
                 "parameter =", request.name, 
                 "answer =", service_description)
