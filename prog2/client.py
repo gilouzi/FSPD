@@ -7,6 +7,7 @@ import services_pb2, services_pb2_grpc
 def run():
     ip_adress = sys.argv[1]
     service_name = sys.argv[2]
+    print(service_name)
 
     # channel = grpc.insecure_channel(ip_adress)
     channel = grpc.insecure_channel('localhost:8888')
