@@ -22,7 +22,7 @@ message ServiceName {
 }
 
 message ServicePort {
-    string port = 1;
+    int32 port = 1;
 }
 
 message ServiceDescription {
