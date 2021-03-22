@@ -39,7 +39,8 @@ def serve():
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     services_pb2_grpc.add_DoStuffServicer_to_server(DoStuff(), server)
-    server.add_insecure_port('localhost:'+str(port))
+    server.add_insecure_port('localhost:8888')
+    # server.add_insecure_port('localhost:'+str(port))
 
     server.start()
     server.wait_for_termination()
