@@ -5,6 +5,8 @@ package hello;
 service DoStuff {
     rpc say_hello (HelloRequest) returns (HelloReply) {}
     rpc say_hello_again (HelloRequest) returns (HelloReply) {}
+    rpc get_service_port (ServiceName) returns (ServicePort) {}
+    rpc get_service_description (ServiceName) returns (ServiceDescription) {}
 }
 
 message HelloRequest {
@@ -13,4 +15,16 @@ message HelloRequest {
 
 message HelloReply {
     string retval = 1;
+}
+
+message ServiceName {
+    string name = 1;
+}
+
+message ServicePort {
+    string port = 1;
+}
+
+message ServiceDescription {
+    string description = 1;
 }
