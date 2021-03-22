@@ -30,8 +30,8 @@ def serve():
         arq = f.read().splitlines()
 
     for line in arq:
-        line = line.split('/')
         if line[0] != '#':
+            line = line.split('/')
             print(line)
             service, port = line[0].split()
             description = line[1]
