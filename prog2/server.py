@@ -23,7 +23,6 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
         return services_pb2.ServiceDescription(description=service_description)
 
 def serve():
-    port = sys.argv[1]
     with open(sys.argv[2], 'r') as f:
         arq = f.read().splitlines()
 
@@ -37,7 +36,7 @@ def serve():
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     services_pb2_grpc.add_DoStuffServicer_to_server(DoStuff(), server)
-    server.add_insecure_port('localhost:8888')
+    server.add_insecure_port('localhost:' + sys.argv[1])
     # server.add_insecure_port('localhost:'+str(port))
 
     server.start()
