@@ -31,10 +31,11 @@ def serve():
 
     for line in arq:
         line = line.split('/')
-        print(line)
-        service, port = line[0].split()
-        description = line[1]
-        services_dict[service] = {'port': port, 'description': description}
+        if line[0] != '#':
+            print(line)
+            service, port = line[0].split()
+            description = line[1]
+            services_dict[service] = {'port': port, 'description': description}
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     services_pb2_grpc.add_DoStuffServicer_to_server(DoStuff(), server)
