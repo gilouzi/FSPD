@@ -18,7 +18,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
         print(1)
         service_port = services_dict[request.serviceName]['port'] if request.service_name in services_dict.keys() else -1
         print(2)
-        print("GRPC server in get_service_port, adress =", str(context.peer()), "service name =", str(request.serviceName), "port =", services_port)
+        print("GRPC server in get_service_port, adress =", str(context.peer()), "service name =", str(request.serviceName), "port =", service_port)
         print(3)
         return services_pb2.ServicePort(port=service_port)
     
