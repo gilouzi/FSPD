@@ -10,7 +10,7 @@ def run():
     print(service_name)
 
     # channel = grpc.insecure_channel(ip_adress)
-    channel = grpc.insecure_channel(ip_adress + 'localhost:8888')
+    channel = grpc.insecure_channel('localhost:' + ip_adress)
     stub = services_pb2_grpc.DoStuffStub(channel)
 
     response = stub.get_service_port(services_pb2.ServiceName(name=service_name))
