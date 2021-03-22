@@ -21,7 +21,7 @@ def run():
     response = stub.say_hello_again(services_pb2.HelloRequest(pid=my_pid))
     print("GRPC client received: " + response.retval)
 
-    response = stub.get_service_port(services_pb2.ServiceName(name=service_name))
+    response = stub.get_service_port(services_pb2.ServiceName(name=str(service_name)))
     print("GRPC client received: " + str(response.port))
 
     response = stub.get_service_description(services_pb2.ServiceName(name=service_name))
