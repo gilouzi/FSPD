@@ -3,18 +3,8 @@ syntax = "proto3";
 package services;
 
 service DoStuff {
-    rpc say_hello (HelloRequest) returns (HelloReply) {}
-    rpc say_hello_again (HelloRequest) returns (HelloReply) {}
     rpc get_service_port (ServiceName) returns (ServicePort) {}
     rpc get_service_description (ServiceName) returns (ServiceDescription) {}
-}
-
-message HelloRequest {
-    int32 pid = 1;
-}
-
-message HelloReply {
-    string retval = 1;
 }
 
 message ServiceName {

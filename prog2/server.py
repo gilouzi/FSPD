@@ -6,28 +6,20 @@ import services_pb2, services_pb2_grpc
 services_dict = dict()
 class DoStuff(services_pb2_grpc.DoStuffServicer):
 
-    def say_hello(self, request, context):
-        print("GRPC server in say_hello, pid =", str(request.pid))
-        return services_pb2.HelloReply(retval='Hello, %s!' % str(request.pid))
-    
-    def say_hello_again(self, request, context):
-        print("GRPC server in say_hello_again, pid =", str(request.pid))
-        return services_pb2.HelloReply(retval='Hello again, %s!' % str(request.pid))
-
     def get_service_port(self, request, context):
         service_port = services_dict[request.name]['port'] if request.name in services_dict.keys() else -1
         print("client adress =", str(context.peer()), 
-                "command called = get_service_port ",
-                "parameter =", request.name, 
-                "answer =", str(service_port))
+                ",command called = get_service_port ",
+                ",parameter =", request.name, 
+                ",answer =", str(service_port))
         return services_pb2.ServicePort(port=service_port)
     
     def get_service_description(self, request, context):
         service_description = services_dict[request.name]['description'] if request.name in services_dict.keys() else ""
         print("client adress =", str(context.peer()), 
-                "command called = get_service_description ",
-                "parameter =", request.name, 
-                "answer =", service_description)
+                ", command called = get_service_description ",
+                ",parameter =", request.name, 
+                ",answer =", service_description)
         return services_pb2.ServiceDescription(description=service_description)
 
 def serve():
