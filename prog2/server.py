@@ -31,6 +31,7 @@ def serve():
 
     for line in arq:
         line = line.split('/')
+        print(line)
         service, port = line[0].split()
         description = line[1]
         services_dict[service] = {'port': port, 'description': description}
