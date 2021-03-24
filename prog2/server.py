@@ -26,7 +26,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
                     services_dict[service] = {'port': int(port), 'protocol': description[0]}
                     
                     if len(description) > 1:
-                        services_dict[service]['aliases'] = ''.join(description[1:])
+                        services_dict[service]['aliases'] = ', '.join(description[1:])
                     else:
                         services_dict[service]['aliases'] = ''
 
