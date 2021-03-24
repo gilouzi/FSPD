@@ -16,5 +16,7 @@ message ServicePort {
 }
 
 message ServiceDescription {
-    string description = 1;
+    string protocol = 1;
+    string aliases = 2;
+    string comments = 3;
 }
