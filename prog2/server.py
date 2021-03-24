@@ -5,6 +5,18 @@ import services_pb2, services_pb2_grpc
 
 services_dict = dict()
 class DoStuff(services_pb2_grpc.DoStuffServicer):
+    def __init__(self, txt):
+        self.services_dict = dict()
+        with open(txt, 'r') as f:
+            arq = f.read().splitlines()
+
+        for line in arq:
+            if line != '' and line[0] != '#':
+                line = line.split('/')
+                service, port = line[0].split()
+                description = line[1]
+                if service not in services_dict.keys():
+                    services_dict[service] = {'port': int(port), 'description': description}
 
     def get_service_port(self, request, context):
         service_port = services_dict[request.name]['port'] if request.name in services_dict.keys() else -1
@@ -23,19 +35,10 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
         return services_pb2.ServiceDescription(description=service_description)
 
 def serve():
-    with open(sys.argv[2], 'r') as f:
-        arq = f.read().splitlines()
-
-    for line in arq:
-        if line != '' and line[0] != '#':
-            line = line.split('/')
-            service, port = line[0].split()
-            description = line[1]
-            if service not in services_dict.keys():
-                services_dict[service] = {'port': int(port), 'description': description}
+    
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    services_pb2_grpc.add_DoStuffServicer_to_server(DoStuff(), server)
+    services_pb2_grpc.add_DoStuffServicer_to_server(DoStuff(sys.argv[2]), server)
     server.add_insecure_port('0.0.0.0:' + sys.argv[1])
     # server.add_insecure_port('localhost:'+str(port))
 
