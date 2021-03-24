@@ -18,8 +18,8 @@ def run():
 
     response = stub.get_service_description(services_pb2.ServiceName(name=service_name))
     print("GRPC client received: protocol = " + response.protocol + 
-            "/ aliases = " + response.aliases + 
-            "/ comments = " + response.comments)
+            " | aliases = " + response.aliases + 
+            " | comments = " + response.comments)
 
     channel.close()
 
