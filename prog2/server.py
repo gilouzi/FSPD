@@ -38,26 +38,26 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
     def get_service_port(self, request, context):
         service_port = services_dict[request.name]['port'] if request.name in services_dict.keys() else -1
         print("client adress =", str(context.peer()), 
-                ",command called = get_service_port ",
-                ", service name =", request.name, 
-                ", port =", str(service_port))
+                "| command called = get_service_port ",
+                "| service name =", request.name, 
+                "| port =", str(service_port))
         return services_pb2.ServicePort(port=service_port)
     
     def get_service_description(self, request, context):
         if request.name in services_dict.keys():
             print("client adress =", str(context.peer()), 
-                    ", command called = get_service_description ",
-                    ", service name =", request.name, 
-                    ", protocol =", services_dict[request.name]['protocol'],
-                    ", aliases =", services_dict[request.name]['aliases'],
-                    ", comments =", services_dict[request.name]['comments'])
+                    "| command called = get_service_description ",
+                    "| service name =", request.name, 
+                    "| protocol =", services_dict[request.name]['protocol'],
+                    "| aliases =", services_dict[request.name]['aliases'],
+                    "| comments =", services_dict[request.name]['comments'])
             return services_pb2.ServiceDescription(protocol=services_dict[request.name]['protocol'], 
                                                 aliases=services_dict[request.name]['aliases'],
                                                 comments=services_dict[request.name]['comments'])
         else:
             print("client adress =", str(context.peer()), 
-                    ", command called = get_service_description ",
-                    ", service name =", request.name, 
+                    "| command called = get_service_description ",
+                    "| service name =", request.name, 
                     "not found")
             return services_pb2.ServiceDescription(protocol='',aliases='',comments='')
 
