@@ -35,7 +35,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
         return services_pb2.ServiceDescription(description=service_description)
 
 def serve():
-    
+    print(sys.argv)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     services_pb2_grpc.add_DoStuffServicer_to_server(DoStuff(sys.argv[2]), server)
