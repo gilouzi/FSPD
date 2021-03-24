@@ -14,7 +14,7 @@ setup:
 
 # The ${} notation is specific to the make syntax and is very similar to bash's $() 
 run_server:
-	${PYTHON} server.py $(arg1) $(arg2)
+	python3 server.py $(arg1) $(arg2)
 
 run_client:
 	${PYTHON} client.py $(arg1) $(arg2)
