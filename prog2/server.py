@@ -36,7 +36,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
                         
     def get_service_port(self, request, context):
         service_port = self.services_dict[request.name]['port'] if request.name in self.services_dict.keys() else -1
-        print("client adress =", str(context.peer()), 
+        print("client address =", str(context.peer()), 
                 "| command called = get_service_port ",
                 "| service name =", request.name, 
                 "| port =", str(service_port))
@@ -44,7 +44,7 @@ class DoStuff(services_pb2_grpc.DoStuffServicer):
     
     def get_service_description(self, request, context):
         if request.name in self.services_dict.keys():
-            print("client adress =", str(context.peer()), 
+            print("client address =", str(context.peer()), 
                     "| command called = get_service_description ",
                     "| service name =", request.name, 
                     "| protocol =", self.services_dict[request.name]['protocol'],
